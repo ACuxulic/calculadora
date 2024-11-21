@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1 id="titulo1">FORMULARIO PARA OPERAR NUMEROS</h1>
+    </header>
+    <section>
+        <input type="text" id="nuevotexto">
+        <button onclick="cambiarTexto()">CAMBIAR TEXTO</button>
+        <form style="border:2px green solid; background-color: beige;">
+            <label for="opciones">Elija su operación</label>
+            <select name="opciones" id="FormOption">
+                <option value="01">Sumar</option>
+                <option value="02">Restar</option>
+                <option value="03">Multiplicar</option>
+                <option value="04">Dividir</option>
+                <option value="05">Potencia (a^b)</option>
+            </select>
+
+            <label for="valora">Número primero</label>
+            <input type="text" name="valora" id="FormValorA"><br>
+            <label for="valorb">Número segundo</label>
+            <input type="text" name="valorb" id="FormValorB"><br>
+            <button type="button" onclick="operar()">CALCULO</button>
+        </form>
+    </section>
+    <script>
+        function cambiarTexto() {
+            var nuevoTitulo = document.getElementById("nuevotexto").value;
+            document.getElementById("titulo1").innerHTML = nuevoTitulo;
+        }
+
+        function sumar(a, b) {
+            var suma = a + b;
+            alert("La suma es " + suma);
+        }
+
+        function restar(a, b){
+            var resta = a - b;
+            alert ("La resta es " + resta);
+        }
+
+        function multiplicar(a, b){
+            var multiplicacion = a * b;
+            alert ("La multiplicación es " + multiplicacion);
+        }
+
+        function dividir(a, b){
+            if (b === 0) {
+                alert("No se puede dividir por cero");
+            } else {
+                var division = a / b;
+                alert ("La división es " + division);
+            }
+        }
+
+        function potencia(a, b){
+            var potencia = Math.pow(a, b); 
+            alert ("La potencia es " + potencia);
+        }
+
+        function operar() {
+            var elementoA = document.getElementById("FormValorA");
+            var elementoB = document.getElementById("FormValorB");
+
+            var numA = parseInt(elementoA.value);
+            var numB = parseInt(elementoB.value);
+            if (isNaN(numA) || isNaN(numB)) {
+                alert("Verifique sus datos, no está enviando números");
+                return;
+            }
+            var opcionSeleccionada = document.getElementById("FormOption");
+            var opcion = opcionSeleccionada.value;
+            if (opcion == "01") {
+                sumar(numA, numB);
+            } else if (opcion == "02") {
+                restar(numA, numB);
+            } else if (opcion == "03"){
+                multiplicar(numA, numB);
+            } else if (opcion == "04"){
+                dividir(numA, numB);
+            } else if (opcion == "05"){
+                potencia(numA, numB);
+            } else {
+                alert("Opción en Construcción");
+            }
+        }
+    </script>
+</body>
+</html>
